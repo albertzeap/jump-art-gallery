@@ -40,8 +40,9 @@ public class SecurityConfiguration {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
-                .antMatchers(HttpMethod.GET,"api/users").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/api/users").hasRole("ADMIN")
                 .antMatchers(HttpMethod.POST, "/api/user").permitAll()
+                .antMatchers("/api/catalogOrder").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
